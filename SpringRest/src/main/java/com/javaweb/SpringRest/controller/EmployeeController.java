@@ -39,13 +39,6 @@ public class EmployeeController
     @GetMapping("/employee/{id}")
     public Employee getById(@PathVariable int id)
     {
-        Employee employee = null;
-        for(Employee e:getEmployees())
-            if(e.getId()==id)
-            {
-                employee=e;
-                break;
-            }
-        return employee;
+        return getEmployees().stream().filter(emp->emp.getId()==id).findFirst().get();
     }
 }
